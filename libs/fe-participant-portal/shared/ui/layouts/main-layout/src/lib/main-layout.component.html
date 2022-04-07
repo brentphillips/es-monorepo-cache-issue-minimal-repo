@@ -1,0 +1,111 @@
+<div class="es-g-badge absolute top-0 left-0 p-6 cursor-pointer" routerLink="/">
+  <div class="w-20">
+    <img class="mb-2" [src]="'/assets/images/award-icons/' + award + '.png'" />
+    <img [src]="'/assets/images/smile-guage/' + impactPoints + '.png'" />
+  </div>
+</div>
+<es-app-bar class="z-50">
+  <!-- <img class="h-8 transform translate-x-4 mr-8" src="assets/images/ecosystem-logo-white.png" alt="ecosystem Logo" /> -->
+  <span class="ml-auto">
+    <a
+      [routerLink]="['/']"
+      class="cursor-pointer bg-white h-10 w-10 pt-2 rounded-full mr-2 inline-block text-center align-bottom"
+      ><es-icon name="home-1" color="dark-fill" class="h-6 w-6 inline mx-auto"></es-icon
+    ></a>
+    <!-- <span
+      (click)="toggleMenu()"
+      class="cursor-pointer bg-theme-primary-500 h-10 w-10 pt-2 rounded-full mr-2 inline-block text-center align-bottom"
+      ><es-icon name="grid-4" color="dark-fill" class="h-6 w-6 inline mx-auto"></es-icon
+    ></span> -->
+    <!-- <span
+      (click)="toggleMenu()"
+      class="cursor-pointer bg-white h-10 w-10 pt-2 rounded-full mr-2 inline-block text-center align-bottom"
+      ><es-icon name="bell" color="dark-fill" class="h-6 w-6 inline mx-auto"></es-icon
+    ></span> -->
+    <span class="cursor-pointer p-2 bg-white rounded-full inline-block text-grey-700" (click)="toggleMenu()">
+      <div class="flex flex-row items-center">
+        <img
+          class="rounded-full h-6 w-6"
+          src="https://uploads-ssl.webflow.com/619307bdce5e1dadafee2404/61f24440b24f6d20c641fb01_social1.png"
+        />
+        <h5 class="px-2">Menu</h5>
+      </div>
+    </span>
+  </span>
+</es-app-bar>
+
+<div class="es-menu overflow-hidden text-grey-700" *ngIf="menuOpen">
+  <div
+    [routerLink]="['/profile']"
+    class="flex flex-row items-center p-6 border-grey-100 border-b-1 cursor-pointer hover:bg-grey-300 hover:text-black"
+  >
+    <img
+      class="rounded-full w-20 h-20 mr-6"
+      src="https://uploads-ssl.webflow.com/619307bdce5e1dadafee2404/61f24440b24f6d20c641fb01_social1.png"
+    />
+    <div>
+      <p class="mb-1 mt-1 es-display-4 es-text-shadow-none">{{ username }}</p>
+      <p class="es-text-body-3">{{ fullName }}</p>
+    </div>
+    <div class="ml-auto">
+      <es-icon class="h-6 w-6" name="edit-1" color="dark-fill"></es-icon>
+    </div>
+  </div>
+  <a
+    [routerLink]="['/']"
+    routerLinkActive="es-link-active"
+    [routerLinkActiveOptions]="{ exact: true }"
+    class="block px-6 py-4 cursor-pointer hover:bg-grey-300 hover:text-black"
+  >
+    <es-icon color="dark-fill" class="mr-3 h-6 w-6 align-bottom" name="home-1"></es-icon>
+    <h5 class="inline">Home</h5>
+  </a>
+  <a
+    [routerLink]="['/missions']"
+    routerLinkActive="es-link-active"
+    class="block px-6 py-4 cursor-pointer hover:bg-grey-300 hover:text-black"
+  >
+    <es-icon color="dark-fill" class="mr-3 h-6 w-6 align-bottom" name="bolt"></es-icon>
+    <h5 class="inline">Missions</h5>
+  </a>
+  <a
+    [routerLink]="['/challenges']"
+    routerLinkActive="es-link-active"
+    class="block px-6 py-4 cursor-pointer hover:bg-grey-300 hover:text-black"
+  >
+    <es-icon color="dark-fill" class="mr-3 h-6 w-6 align-bottom" name="star-2"></es-icon>
+    <h5 class="inline">Challenges</h5>
+  </a>
+  <a
+    [routerLink]="['/store']"
+    routerLinkActive="es-link-active"
+    class="block px-6 py-4 cursor-pointer hover:bg-grey-300 hover:text-black"
+  >
+    <es-icon color="dark-fill" class="mr-3 h-6 w-6 align-bottom" name="shirt"></es-icon>
+    <h5 class="inline">Store</h5>
+  </a>
+  <a
+    [routerLink]="['/feed']"
+    routerLinkActive="es-link-active"
+    class="block px-6 py-4 cursor-pointer hover:bg-grey-300 hover:text-black"
+  >
+    <es-icon color="dark-fill" class="mr-3 h-6 w-6 align-bottom" name="message-circle-lines"></es-icon>
+    <h5 class="inline">Feed</h5>
+  </a>
+  <a
+    [routerLink]="['/friends']"
+    routerLinkActive="es-link-active"
+    class="block px-6 py-4 cursor-pointer hover:bg-grey-300 hover:text-black border-grey-100 border-b-1"
+  >
+    <es-icon color="dark-fill" class="mr-3 h-6 w-6 align-bottom" name="users-more"></es-icon>
+    <h5 class="inline">Friends</h5>
+  </a>
+  <div (click)="logout()" class="px-6 py-4 cursor-pointer hover:bg-grey-300 hover:text-black">
+    <es-icon color="dark" class="mr-3 h-6 w-6 align-bottom" name="logout"></es-icon>
+    <h5 class="inline">Sign out</h5>
+  </div>
+</div>
+
+<main class="px-4 py-4 md:px-10 md:py-12 lg:px-16 lg:py-8">
+  <ng-content></ng-content>
+</main>

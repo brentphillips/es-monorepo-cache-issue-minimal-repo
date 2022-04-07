@@ -1,0 +1,49 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2017", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      
+      "@es/fe-educator-portal/app-shell": ["libs/fe-educator-portal/app-shell/src/index.ts"],
+      "@es/fe-educator-portal/shared/ui/layouts/content-layout": [
+        "libs/fe-educator-portal/shared/ui/layouts/content-layout/src/index.ts"
+      ],
+      "@es/fe-educator-portal/shared/ui/layouts/main-layout": [
+        "libs/fe-educator-portal/shared/ui/layouts/main-layout/src/index.ts"
+      ],
+      "@es/fe-participant-portal/app-shell": ["libs/fe-participant-portal/app-shell/src/index.ts"],
+      "@es/fe-participant-portal/shared/data-access": ["libs/fe-participant-portal/shared/data-access/src/index.ts"],
+      "@es/fe-participant-portal/shared/environments": ["libs/fe-participant-portal/shared/environments/src/index.ts"],
+      "@es/fe-participant-portal/shared/models": ["libs/fe-participant-portal/shared/models/src/index.ts"],
+      "@es/fe-participant-portal/shared/ui/layouts/content-layout": [
+        "libs/fe-participant-portal/shared/ui/layouts/content-layout/src/index.ts"
+      ],
+      "@es/fe-participant-portal/shared/ui/layouts/main-layout": [
+        "libs/fe-participant-portal/shared/ui/layouts/main-layout/src/index.ts"
+      ],
+      "@es/fe-participant-portal/shared/ui/layouts/two-column-layout": [
+        "libs/fe-participant-portal/shared/ui/layouts/two-column-layout/src/index.ts"
+      ],
+      "@es/identity/shared/ui": ["libs/fe-participant-portal/shared/ui/src/index.ts"],
+      "@es/shared/fe-dom-tokens": ["libs/shared/fe-dom-tokens/src/index.ts"],
+      "@es/shared/fe-form-utils": ["libs/shared/fe-form-utils/src/index.ts"],
+      "@es/shared/fe-logger": ["libs/shared/fe-logger/src/index.ts"],
+      "@es/shared/models": ["libs/shared/models/src/index.ts"],
+      "@es/shared/security": ["libs/shared/security/src/index.ts"],
+      "@es/utils": ["libs/utils/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

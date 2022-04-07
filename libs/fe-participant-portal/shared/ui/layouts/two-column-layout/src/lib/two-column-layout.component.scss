@@ -1,0 +1,19 @@
+.es-feed {
+  es-column-left,
+  es-column-right {
+    @apply sm:w-1/2;
+
+    > es-compound-card,
+    > es-simple-card {
+      @apply mb-8 w-full;
+    }
+  }
+
+  es-column-left {
+    @apply sm:pr-4;
+  }
+
+  es-column-right {
+    @apply sm:pl-4;
+  }
+}

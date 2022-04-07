@@ -1,0 +1,465 @@
+{
+  "version": 1,
+  "projects": {
+    "fe-participant-portal": {
+      "projectType": "application",
+      "root": "apps/fe-participant-portal",
+      "sourceRoot": "apps/fe-participant-portal/src",
+      "prefix": "es",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/fe-participant-portal",
+            "index": "apps/fe-participant-portal/src/index.html",
+            "main": "apps/fe-participant-portal/src/main.ts",
+            "polyfills": "apps/fe-participant-portal/src/polyfills.ts",
+            "tsConfig": "apps/fe-participant-portal/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/fe-participant-portal/src/assets",
+              {
+                "input": "apps/fe-participant-portal/src/favicon",
+                "glob": "**/*",
+                "output": ""
+              },
+              {
+                "input": "./node_modules/three/examples/js/libs/draco/",
+                "glob": "**/*",
+                "output": "assets/draco"
+              }
+            ],
+            "styles": ["apps/fe-participant-portal/src/styles.scss"],
+            "scripts": [],
+            "baseHref": "/"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "libs/fe-participant-portal/shared/environments/src/lib/environment.ts",
+                  "with": "libs/fe-participant-portal/shared/environments/src/lib/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "40kb",
+                  "maximumError": "50kb"
+                }
+              ]
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "fe-participant-portal:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "fe-participant-portal:build:production"
+            },
+            "development": {
+              "browserTarget": "fe-participant-portal:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "fe-participant-portal:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/fe-participant-portal/src/**/*.ts", "apps/fe-participant-portal/src/**/*.html"]
+          },
+          "outputs": ["{options.outputFile}"]
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/fe-participant-portal"],
+          "options": {
+            "jestConfig": "apps/fe-participant-portal/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": ["scope:fe-participant-portal", "type:app"]
+    },
+    "fe-participant-portal-app-shell": {
+      "projectType": "library",
+      "root": "libs/fe-participant-portal/app-shell",
+      "sourceRoot": "libs/fe-participant-portal/app-shell/src",
+      "prefix": "es",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/fe-participant-portal/app-shell"],
+          "options": {
+            "jestConfig": "libs/fe-participant-portal/app-shell/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/fe-participant-portal/app-shell/src/**/*.ts",
+              "libs/fe-participant-portal/app-shell/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": []
+    },
+    "fe-participant-portal-e2e": {
+      "root": "apps/fe-participant-portal-e2e",
+      "sourceRoot": "apps/fe-participant-portal-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/fe-participant-portal-e2e/cypress.json",
+            "tsConfig": "apps/fe-participant-portal-e2e/tsconfig.e2e.json",
+            "devServerTarget": "fe-participant-portal:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "fe-participant-portal:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/fe-participant-portal-e2e/**/*.{js,ts}"]
+          },
+          "outputs": ["{options.outputFile}"]
+        }
+      },
+      "tags": ["scope:fe-participant-portal", "type:e2e"],
+      "implicitDependencies": ["fe-participant-portal"]
+    },
+    "fe-participant-portal-shared-data-access": {
+      "projectType": "library",
+      "root": "libs/fe-participant-portal/shared/data-access",
+      "sourceRoot": "libs/fe-participant-portal/shared/data-access/src",
+      "prefix": "es",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/fe-participant-portal/shared/data-access/src/**/*.ts",
+              "libs/fe-participant-portal/shared/data-access/src/**/*.html"
+            ]
+          },
+          "outputs": ["{options.outputFile}"]
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/fe-participant-portal/shared/data-access"],
+          "options": {
+            "jestConfig": "libs/fe-participant-portal/shared/data-access/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": ["scope:shared", "type:data-access"]
+    },
+    "fe-participant-portal-shared-environments": {
+      "root": "libs/fe-participant-portal/shared/environments",
+      "sourceRoot": "libs/fe-participant-portal/shared/environments/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/fe-participant-portal/shared/environments/**/*.ts"]
+          },
+          "outputs": ["{options.outputFile}"]
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/fe-participant-portal/shared/environments"],
+          "options": {
+            "jestConfig": "libs/fe-participant-portal/shared/environments/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": ["scope:shared", "type:util"]
+    },
+    "fe-participant-portal-shared-models": {
+      "root": "libs/fe-participant-portal/shared/models",
+      "sourceRoot": "libs/fe-participant-portal/shared/models/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/fe-participant-portal/shared/models/**/*.ts"]
+          },
+          "outputs": ["{options.outputFile}"]
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/fe-participant-portal/shared/models"],
+          "options": {
+            "jestConfig": "libs/fe-participant-portal/shared/models/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": ["scope:shared", "type:util"]
+    },
+    "fe-participant-portal-shared-ui-layouts-content-layout": {
+      "projectType": "library",
+      "root": "libs/fe-participant-portal/shared/ui/layouts/content-layout",
+      "sourceRoot": "libs/fe-participant-portal/shared/ui/layouts/content-layout/src",
+      "prefix": "es",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/fe-participant-portal/shared/ui/layouts/content-layout/src/**/*.ts",
+              "libs/fe-participant-portal/shared/ui/layouts/content-layout/src/**/*.html"
+            ]
+          },
+          "outputs": ["{options.outputFile}"]
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/fe-participant-portal/shared/ui/layouts/content-layout"],
+          "options": {
+            "jestConfig": "libs/fe-participant-portal/shared/ui/layouts/content-layout/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": ["scope:fe-participant-portal", "type:ui"]
+    },
+    "fe-participant-portal-shared-ui-layouts-main-layout": {
+      "projectType": "library",
+      "root": "libs/fe-participant-portal/shared/ui/layouts/main-layout",
+      "sourceRoot": "libs/fe-participant-portal/shared/ui/layouts/main-layout/src",
+      "prefix": "es",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/fe-participant-portal/shared/ui/layouts/main-layout/src/**/*.ts",
+              "libs/fe-participant-portal/shared/ui/layouts/main-layout/src/**/*.html"
+            ]
+          },
+          "outputs": ["{options.outputFile}"]
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/fe-participant-portal/shared/ui/layouts/main-layout"],
+          "options": {
+            "jestConfig": "libs/fe-participant-portal/shared/ui/layouts/main-layout/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": ["scope:fe-participant-portal", "type:ui"]
+    },
+    "fe-participant-portal-shared-ui-layouts-two-column-layout": {
+      "projectType": "library",
+      "root": "libs/fe-participant-portal/shared/ui/layouts/two-column-layout",
+      "sourceRoot": "libs/fe-participant-portal/shared/ui/layouts/two-column-layout/src",
+      "prefix": "es",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/fe-participant-portal/shared/ui/layouts/two-column-layout"],
+          "options": {
+            "jestConfig": "libs/fe-participant-portal/shared/ui/layouts/two-column-layout/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/fe-participant-portal/shared/ui/layouts/two-column-layout/src/**/*.ts",
+              "libs/fe-participant-portal/shared/ui/layouts/two-column-layout/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": ["scope:fe-participant-portal", "type:ui"]
+    },
+    "shared-fe-dom-tokens": {
+      "projectType": "library",
+      "root": "libs/shared/fe-dom-tokens",
+      "sourceRoot": "libs/shared/fe-dom-tokens/src",
+      "prefix": "es",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/shared/fe-dom-tokens/src/**/*.ts", "libs/shared/fe-dom-tokens/src/**/*.html"]
+          },
+          "outputs": ["{options.outputFile}"]
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/fe-dom-tokens"],
+          "options": {
+            "jestConfig": "libs/shared/fe-dom-tokens/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": ["scope:shared", "type:util"]
+    },
+    "shared-fe-form-utils": {
+      "projectType": "library",
+      "root": "libs/shared/fe-form-utils",
+      "sourceRoot": "libs/shared/fe-form-utils/src",
+      "prefix": "es",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/shared/fe-form-utils/src/**/*.ts", "libs/shared/fe-form-utils/src/**/*.html"]
+          },
+          "outputs": ["{options.outputFile}"]
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/fe-form-utils"],
+          "options": {
+            "jestConfig": "libs/shared/fe-form-utils/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": ["scope:shared", "type:shared"]
+    },
+    "shared-fe-logger": {
+      "projectType": "library",
+      "root": "libs/shared/fe-logger",
+      "sourceRoot": "libs/shared/fe-logger/src",
+      "prefix": "es",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/shared/fe-logger/src/**/*.ts", "libs/shared/fe-logger/src/**/*.html"]
+          },
+          "outputs": ["{options.outputFile}"]
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/fe-logger"],
+          "options": {
+            "jestConfig": "libs/shared/fe-logger/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": ["scope:shared", "type:shared"]
+    },
+    "shared-models": {
+      "root": "libs/shared/models",
+      "sourceRoot": "libs/shared/models/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/shared/models/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/models"],
+          "options": {
+            "jestConfig": "libs/shared/models/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "shared-security": {
+      "projectType": "library",
+      "root": "libs/shared/security",
+      "sourceRoot": "libs/shared/security/src",
+      "prefix": "es",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/security"],
+          "options": {
+            "jestConfig": "libs/shared/security/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/shared/security/src/**/*.ts", "libs/shared/security/src/**/*.html"]
+          }
+        }
+      },
+      "tags": ["type:util", "scope:shared"]
+    },
+    "utils": {
+      "projectType": "library",
+      "root": "libs/utils",
+      "sourceRoot": "libs/utils",
+      "prefix": "es",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/utils/**/*.ts", "libs/utils/**/*.html"]
+          },
+          "outputs": ["{options.outputFile}"]
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/utils"],
+          "options": {
+            "jestConfig": "libs/utils/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": ["scope:shared", "type:util"]
+    }
+  }
+}

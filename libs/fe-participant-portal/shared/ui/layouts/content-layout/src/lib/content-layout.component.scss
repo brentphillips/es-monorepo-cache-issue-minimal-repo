@@ -1,0 +1,28 @@
+.es-content-layout-body {
+  width: 100%;
+  margin: 0 auto;
+}
+
+@media (min-width: 640px) {
+  .es-content-layout-body {
+    width: 600px;
+  }
+}
+
+@media (min-width: 768px) {
+  .es-content-layout-body {
+    width: 650px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .es-content-layout-body {
+    width: 700px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .es-content-layout-body {
+    width: 800px;
+  }
+}

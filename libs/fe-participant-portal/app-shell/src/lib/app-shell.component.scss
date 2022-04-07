@@ -1,0 +1,67 @@
+::ng-deep {
+  body.es-body-dark::before {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    min-height: 100vh;
+    animation: opacity 1s ease;
+    animation-fill-mode: forwards;
+    background: rgb(10, 43, 56);
+    background: linear-gradient(180deg, rgb(41, 140, 227) 0%, rgb(10, 43, 56) 1200px, rgb(10, 43, 56) 100%);
+    content: '';
+    opacity: 0;
+  }
+
+  @keyframes opacity {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+.es-reef-bottom {
+  @apply absolute bottom-0 w-full;
+
+  z-index: -1;
+}
+
+.es-island-image {
+  max-width: 1350px;
+}
+
+@media (min-width: 1350px) {
+  .es-island-image {
+    left: calc(50% - 675px);
+  }
+}
+
+.es-burst-overlay {
+  @apply absolute top-0 left-0 w-4/5 opacity-60 mix-blend-overlay;
+  z-index: -1;
+}
+
+.es-push-down {
+  display: block;
+  height: 400px;
+}
+
+.es-push-down-2 {
+  @apply block h-32 md:h-0;
+}
+
+@media (min-width: 1800px) {
+  .es-push-down {
+    height: 450px;
+  }
+}
+
+.es-reef-min-height {
+  min-height: 3000px;
+}
